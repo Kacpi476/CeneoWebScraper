@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-data = pd.read_json("158841627.json")
+data = pd.read_json("item_data/158841627.json")
 
 poleca = 0
 nie_poleca = 0
