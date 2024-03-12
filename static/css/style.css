@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: black;
+    color: #ffffff;
+}
+
+.container {
+    padding: 20px 10%;
+}
+
+p {
+    font-size: 16px;
+}
+
+.section-title {
+    margin-top: 80px;
+    font-size: 56px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.subtitle {
+    margin-top: 4px;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: left;
+}
+
+header {
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,rgba(255,255,255,0)), color-stop(80%, #000000));*/
+    padding: 20px 10%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+header #logo {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 30px;
+    transition: 0.5s;
+}
+
+header #logo:hover {
+    color: #2b8be6;
+}
+
+header ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+
+header ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    position: relative;
+}
+
+header ul li a::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background: #2392fb;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+}
+
+header ul li a:hover::after {
+    width: 100%;
+}
+
+/* <!-- -------------home------------- --> */
+#home {
+    width: 100%;
+    height: 100vh;
+}
+
+.home-text {
+    user-select: none;
+    margin-top: 220px;
+    width: 100%;
+    height: 60vw;
+    text-align: center;
+} 
+
+.home-text h1 {
+    font-size: 200px;
+}
+
+.home-text h2 {
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+
+
+/* <!-- -------------cel aplikacji------------- --> */
+#cel_aplikacji {
+    width: 100%;
+    height: 100vh;
+    background-color: red;
+}
+
+
+/* <!-- -------------opis_dzialania------------- --> */
+#opis_dzialania {
+    width: 100%;
+    height: 100vh;
+    background-color: blue;
+}
+
+/* <!-- -------------biblioteki------------- --> */
+#biblioteki {
+    width: 100%;
+    height: 100vh;
+    background-color: violet;
+}
+
+/* <!-- -------------podejscia------------- --> */
+#podejscia {
+    width: 100%;
+    height: 100vh;
+    background-color: green;
+}
+
+
+
+/* <!-- -------------extract------------- --> */
+#extract{
+    display: flex;
+    margin-top: 3%;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+.extract_in{
+    display: flex;
+    width: 80%;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+}
+.button_section {
+    display: flex;
+    width: 50%;
+    height: 25%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: red;
+}
+.button_header{
+    display: flex;
+    position: top;
+    width: 100%;
+    height: 20%;
+    align-items: center;
+    justify-content: center;
+}
+.button_button{
+    display: flex;
+    width: 100%;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+/* <!-- -------------extract------------- --> */
+#data{
+    display: flex;
+    margin-top: 3%;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.data_in{
+    display: flex;
+    width: 80%;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+.data_section{
+    display: flex;
+    width: 50%;
+    height: 25%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: red;
+}
+
+.data_header{
+    display: flex;
+    position: top;
+    width: 100%;
+    height: 20%;
+    align-items: center;
+    justify-content: center;
+}
+
+.data_list{
+    display: flex;
+    width: 100%;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+}

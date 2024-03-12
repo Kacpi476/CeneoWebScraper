@@ -8,8 +8,8 @@
 
 </head>
 <body>
-    <div id="home">
-        <div class="container">
+    <div id="data">
+        <div class="data_in">
             <header>
                     <ul id="navigation-menu">
                         <li><a href="/">HOME PAGE</a></li>
@@ -18,34 +18,19 @@
                         <li><a href="/about">ABOUT</a></li>
                     </ul>
             </header>
-            <div class="home-text">
-                <h1>Projekt PP2</h1>
-                <h2>strona testowa</h2>
+            <div class="data_section">
+                <div class="data_header">
+                    <h1>DATA</h1>
+                </div>
+                <div class="data_list">
+                    <ul>
+                        {% for product in products %}
+                            <li><a href="/dane/{{ product }}">Opinie dla produktu {{ product }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-
         </div>
     </div>
-
-    <div id="cel_aplikacji">
-        <div class="container">
-            <h>cel aplikacji</h>
-        </div>
-    </div>
-    <div id="opis_dzialania">
-        <div class="container">
-            <h>opis_dzialania</h>
-        </div>
-    </div>
-    <div id="biblioteki">
-        <div class="container">
-            <h>biblioteki</h>
-        </div>
-    </div>
-    <div id="podejscia">
-        <div class="container">
-            <h>podejscia</h>
-        </div>
-    </div>
-
 </body>
 </html>
