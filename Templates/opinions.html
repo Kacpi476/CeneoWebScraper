@@ -28,6 +28,10 @@
                 <th>Liczba pozytywnych opinii</th>
                 <th>Liczba negatywnych opinii</th>
                 <th>Treść opinii</th>
+                <th>Data wystawienia</th>
+                <th>Data kupna</th>
+                <th>Pros</th>
+                <th>Cons</th>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +44,10 @@
                 <td>{{ opinion.yes_count }}</td>
                 <td>{{ opinion.no_count }}</td>
                 <td>{{ opinion.text }}</td>
+                <td>{{ opinion.date_posted }}</td>
+                <td>{{ opinion.date_purchased}}</td>
+                <td>{{ opinion.zalety }}</td>
+                <td>{{ opinion.wady }}</td>
             </tr>
             {% endfor %}
         </tbody>
