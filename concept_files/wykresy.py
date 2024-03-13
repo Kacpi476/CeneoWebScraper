@@ -1,25 +1,9 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-data = pd.read_json("item_data/158841627.json")
+data = pd.read_json("reviews_160753591.json")
 
-poleca = 0
-nie_poleca = 0
-brak_polecenia = 0
-
-for i in data["recomendation"]:
-    if i == "Polecam":
-        poleca +=1
-    if i == "Nie polecam":
-        nie_poleca +=1
-    if i == "Brak polecenia":
-        brak_polecenia +=1
-data_polecenie = {
-    "poleca": poleca,
-    "nie poleca": nie_poleca,
-    "brak polecenia": brak_polecenia,
-}
-
+#kod do liczby poszczeglonych ocen
 score_0 = 0
 score_05 = 0
 score_1 = 0
@@ -70,20 +54,38 @@ data_ocena = {
     "5/5": score_5,
 }
 
-#fig, ax = plt.subplots()
+#kod do sreniej oceny
+sum_oceny = 0
+for user_score in data["user_score"]:
+    if user_score == "0/5":
+        sum_oceny += 0
+    if user_score == "0,5/5":
+        sum_oceny += 0.5
+    if user_score == "1/5":
+        sum_oceny += 1
+    if user_score == "1,5/5":
+        sum_oceny += 1.5
+    if user_score == "2/5":
+        sum_oceny += 2
+    if user_score == "2,5/5":
+        sum_oceny += 2.5
+    if user_score == "3/5":
+        sum_oceny += 3
+    if user_score == "3,5/5":
+        sum_oceny += 3.5
+    if user_score == "4/5":
+        sum_oceny += 4
+    if user_score == "4,5/5":
+        sum_oceny += 4.5
+    if user_score == "5/5":
+        sum_oceny += 5
+srednia_ocen = sum_oceny/5
+print(srednia_ocen)
+
+fig, ax = plt.subplots()
 
 names = list(data_ocena.keys())
 values = list(data_ocena.values())
-names2 = list(data_polecenie.keys())
-values2 = list(data_polecenie.values())
 
-#ax.bar(names, values)
-#plt.show()
-
-
-fig, axs = plt.subplots(1, 2, figsize=(12, 12), sharey=True)
-axs[0].bar(names, values)
-axs[1].scatter(names2, values2)
-fig.suptitle('Categorical Plotting')
-
+ax.bar(names, values)
 plt.show()

@@ -28,6 +28,7 @@ else:
     liczba_stron = int(((liczba_opini - last_digit) / 10) + 1)
     count = 0
     counter = 0
+    sum_oceny = 0
 
     for i in range(1, liczba_stron + 1):
         print(i)
@@ -92,5 +93,35 @@ else:
             counter += 1
             count += 1
 
-    with open(f"item_data/{url_item_id}.json", "w", encoding="utf-8") as json_file:
+
+    with open(f"{url_item_id}.json", "w", encoding="utf-8") as json_file:
         json.dump(opinie_data, json_file, ensure_ascii=False, indent=4)
+
+    with open(f"{url_item_id}.json", "r", encoding="utf-8") as json_file:
+        reviews = json.load(json_file)
+        for user_score in reviews["user_score"]:
+            if user_score == "0/5":
+                sum_oceny += 0
+            if user_score == "0,5/5":
+                sum_oceny += 0,5
+            if user_score == "1/5":
+                sum_oceny += 1
+            if user_score == "1,5/5":
+                sum_oceny += 1,5
+            if user_score == "2/5":
+                sum_oceny += 2
+            if user_score == "2,5/5":
+                sum_oceny += 2,5
+            if user_score == "3/5":
+                sum_oceny += 3
+            if user_score == "3,5/5":
+                sum_oceny += 3,5
+            if user_score == "4/5":
+                sum_oceny += 4
+            if user_score == "4,5/5":
+                sum_oceny += 4,5
+            if user_score == "5/5":
+                sum_oceny += 5
+
+        srednia_ocen = sum_oceny/liczba_opini
+        print(srednia_ocen)

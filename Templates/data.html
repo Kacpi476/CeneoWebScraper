@@ -23,11 +23,16 @@
                     <h1>DATA</h1>
                 </div>
                 <div class="data_list">
-                    <ul>
-                        {% for product in products %}
-                            <li><a href="/dane/{{ product }}">Opinie dla produktu {{ product }}</a></li>
-                        {% endfor %}
-                    </ul>
+                    {% for product in products_info %}
+                        <div class="product_info">
+                            <a href="/data/{{ product.product_id }}">Produkt: {{ product.product_id }}</a>
+                            <p>Liczba opinii: {{ product.opinions_count if product.opinions_count else "0"}}</p>
+                            <p>Liczba wad: {{ product.con_count if product.con_count else "0"}}</p>
+                            <p>Liczba zalet: {{ product.pros_count if product.pros_count else "0"}}</p>
+                            <p>Średnia ocena: {{ product.average_score if product.average_score else "brak danych" }}</p>
+                            <a href="/download_json/{{ product.product_id }}">Pobierz JSON</a>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
