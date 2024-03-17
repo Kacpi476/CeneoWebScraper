@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 products = []
 products_info = []
+all_liczba_opini = 0
 
 class ProductInfo:
     def __init__(self, product_id, opinions_count, cons_count, pros_count, average_score):
@@ -192,6 +193,67 @@ def get_reviews(product_id):
 def download_json(product_id):
     filename = f"reviews_{product_id}.json"
     return send_file(filename, as_attachment=True)
+
+@app.route('/wykres/<product_id>')
+def show_charts(product_id):
+    data = pd.read_json(f"reviews_{product_id}.json")
+    score_0 = 0
+    score_05 = 0
+    score_1 = 0
+    score_15 = 0
+    score_2 = 0
+    score_25 = 0 
+    score_3 = 0
+    score_35 = 0
+    score_4 = 0
+    score_45 = 0
+    score_5 = 0
+
+    for i in data["user_score"]:
+        if i == "0/5":
+            score_0 += 1
+        if i == "0,5/5":
+            score_05 += 1
+        if i == "1/5":
+            score_1 += 1
+        if i == "1,5/5":
+            score_15 += 1
+        if i == "2/5":
+            score_2 += 1
+        if i == "2,5/5":
+            score_25 += 1
+        if i == "3/5":
+            score_3 += 1
+        if i == "3,5/5":
+            score_35 += 1
+        if i == "4/5":
+            score_4 += 1
+        if i == "4,5/5":
+            score_45 += 1
+        if i == "5/5":
+            score_5 += 1
+
+    data_ocena = {
+        "0/5": score_0,
+        "0,5/5": score_05,
+        "1/5": score_1,
+        "1,5/5": score_15,
+        "2/5": score_2,
+        "2,5/5": score_25,
+        "3/5": score_3,
+        "3,5/5": score_35,
+        "4/5": score_4,
+        "4,5/5": score_45,
+        "5/5": score_5,
+    }
+
+    current_product_opinions = next((info.opinions_count for info in products_info if info.product_id == product_id), 0)
+
+    total_opinions = sum(info.opinions_count for info in products_info)
+
+    return render_template('charts.html', product_id=product_id, data_ocena=data_ocena,products_info=products_info, all_liczba_opini=total_opinions,current_product_opinions=current_product_opinions)
+
+
 
 
 @app.route("/about")

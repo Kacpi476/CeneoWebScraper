@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    {% block head %}{% endblock %}
-    <!--<link rel="stylesheet" href="style.css">-->
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}-->
+    <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
+<body class="body_about">
     <div id="home">
         <div class="container">
             <header>
@@ -20,13 +20,24 @@
                     </ul>
             </header>
         </div>
-    </div>
-
-    <div id="cel_aplikacji">
-        <div class="container">
-            <h>about</h>
+        <div class="about">
+            <div class="about_in">
+                <div class="about_photo">
+                    <img src="images/kacper.png">
+                </div>
+                <div class="about_content">
+                    <div class="about_header">
+                        <p>Kacper Knapczyk</p>
+                    </div>
+                    <div class="about_info">
+                        My name is Kacper Knapczyk, I'm 19 years old, and I've been fascinated by computers since I was a kid. During my childhood I admired individuals creating computer games, and I was always curious about how they are "written".
+                    </div>
+                    <div class="about_hobby">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 </body>
 </html>
