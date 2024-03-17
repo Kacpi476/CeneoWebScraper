@@ -187,7 +187,7 @@ def get_reviews(product_id):
     with open(f"reviews_{product_id}.json", "r", encoding="utf-8") as json_file:
         reviews = json.load(json_file)
     return render_template('opinions.html', product_id=product_id, opinions=reviews)
-
+    
 @app.route('/download_json/<product_id>')
 def download_json(product_id):
     filename = f"reviews_{product_id}.json"

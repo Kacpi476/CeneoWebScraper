@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block head %}{% endblock %}
+    <!--<link rel="stylesheet" href="style.css">-->
 </head>
 <body>
     <div id="extract">
@@ -25,8 +26,8 @@
                     <form action="/add_product" method="POST">
                         <input type="text" name="product_id" placeholder="ID produktu">
                         <button type="submit">Dodaj</button>
-                        <p>{{ message }}</p>
                     </form>
+                    <p>{{ message }}</p>
                 </div>
             </div>
         </div>

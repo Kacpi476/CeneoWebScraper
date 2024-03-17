@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block head %}{% endblock %}
-
+    <!--<link rel="stylesheet" href="style.css">-->
 </head>
 <body>
     <div id="home">
-        <div class="container">
+        <div class="home_in">
             <header>
                     <ul id="navigation-menu">
                         <li><a href="/">HOME PAGE</a></li>
@@ -19,31 +19,102 @@
                     </ul>
             </header>
             <div class="home-text">
-                <h1>Projekt PP2</h1>
-                <h2>strona testowa</h2>
+                <h1>Ceneo Web Scraper</h1>
+                <h2>autor: Kacper Knapczyk</h2>         
             </div>
-
+            <div class="home_learn_more">
+                <a href="#cel_aplikacji">Learn more</a>
+                </form>
+            </div>      
         </div>
     </div>
 
     <div id="cel_aplikacji">
-        <div class="container">
-            <h>cel aplikacji</h>
+        <div class="cel_aplikacji_in">
+            <div class="cel_header">
+                <h>CEL APLIKACJI</h>
+            </div>
+            <div class="cel_content">
+                <p>Aplikacja umożliwia pobieranie danych ze strony Ceneo.pl.
+                Projekt ten został stworzony w celu zaprezentowania umiejętności programistycznych oraz zdobycia doświadczenia.</p>
+                <div class="cel_content_list">
+                    <div class="list_header">
+                        <p>Głównym założeniem tej aplikacji jest:</p>
+                    </div>
+                    <div class="list">
+                        <li>Pobieranie opini ze strony Ceneo.pl</li>
+                        <li>Zapisywanie opini</li>
+                        <li>Wyświetlanie opini</li>
+                    </div>
+                    <div class="list">
+                        <li>Wyświetlanie podstawowych statystyk</li>
+                        <li>Możliwość pobrania danych</li>
+                        <li>Stworzenie intuicyjnej aplikacji</li>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div id="opis_dzialania">
-        <div class="container">
-            <h>opis_dzialania</h>
+        <div class="opis_dzialania_in">
+            <div class="opis_header">
+                <h>OPIS DZIAŁANIA APLIKACJI</h>
+            </div>
+            <div class="opis_content">
+                <div class="opis_kafelki">
+                    <div class="kafelki_in">
+                        <p>Dodawanie produktów: Użytkownik wprowadza ID produktu z Ceneo, aplikacja pobiera opinie o produkcie.</p>
+                    </div>
+                    <div class="kafelki_in">
+                        <p>Analiza i zapis danych: Opinie są analizowane, istotne informacje są wyciągane i zapisywane w pliku JSON.</p>
+                    </div>
+                </div>
+                <div class="opis_kafelki">
+                    <div class="kafelki_in">
+                        <p>Przeglądanie danych: Użytkownik przegląda listę produktów z ich podstawowymi informacjami oraz może pobrać pełne opinie w formacie JSON.</p>
+                    </div>
+                    <div class="kafelki_in">
+                        <p>Przeglądanie opinii: Użytkownik wybiera produkt, aby zobaczyć jego opinie wraz z danymi. Opinie mogą być również pobrane w formie pliku JSON.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div id="biblioteki">
-        <div class="container">
-            <h>biblioteki</h>
+        <div class="biblioteki_in">
+            <div class="biblioteki_header">
+                <h>Biblioteki</h>
+            </div>
+            <div class="biblioteki_content">
+                <div class="biblioteki_content_list">
+                    <div class="list_header">
+                        <p>Wykożystane biblioteki:</p>
+                    </div>
+                    <div class="list">
+                        <li>Flask</li>
+                        <li>Beautiful Soup</li>
+                        <li>MatPlotLib</li>
+                    </div>
+                    <div class="list">
+                        <li>Requests</li>
+                        <li>re</li>
+                        <li>json/pandas</li>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div id="podejscia">
-        <div class="container">
-            <h>podejscia</h>
+        <div class="podejscia_in">
+            <div class="podejscia_header">
+                <h>Wykożystane podejscia</h>
+            </div>
+            <div class="podejscia_content">
+                <li>Flask: Aplikacja jest oparta na frameworku Flask, który umożliwia tworzenie aplikacji internetowych w Python.</li>
+                <li>BeautifulSoup: Biblioteka BeautifulSoup została wykorzystana do przeszukania strony internetowej Ceneo.pl w celu ekstrakcji danych z kodu HTML.</li>
+                <li>Requests: Biblioteka requests w aplikacji jest używana do pobierania opini ze strony Ceneo.pl.</li>
+                <li>JSON/Pandas: Biblioteka JSON służy do zapisywania danych i opini o produkcie natomiast Pandas zostalo wykorzystane eskperymentalnie do odczytu pliku .json.</li>
+            </div>
         </div>
     </div>
 

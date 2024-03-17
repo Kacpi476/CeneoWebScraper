@@ -3,54 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
     <title>Opinie użytkowników</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
 </head>
 <body>
-    <h1>Opinie użytkowników</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Autor</th>
-                <th>Polecenie</th>
-                <th>Ocena użytkownika</th>
-                <th>Potwierdzenie zakupu</th>
-                <th>Liczba pozytywnych opinii</th>
-                <th>Liczba negatywnych opinii</th>
-                <th>Treść opinii</th>
-                <th>Data wystawienia</th>
-                <th>Data kupna</th>
-                <th>Pros</th>
-                <th>Cons</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for opinion in opinions %}
-            <tr>
-                <td>{{ opinion.author }}</td>
-                <td>{{ opinion.recomendation }}</td>
-                <td>{{ opinion.user_score }}</td>
-                <td>{{ opinion.purchase_confirmation }}</td>
-                <td>{{ opinion.yes_count }}</td>
-                <td>{{ opinion.no_count }}</td>
-                <td>{{ opinion.text }}</td>
-                <td>{{ opinion.date_posted }}</td>
-                <td>{{ opinion.date_purchased}}</td>
-                <td>{{ opinion.zalety }}</td>
-                <td>{{ opinion.wady }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="opinions">
+        <div class="opinions_header">
+            <div>
+                <a href="/data">POWRÓT</a>
+            </div>
+            <div>
+                <a href="/download_json/{{ product_id }}">POBIERZ JSON</a>
+            </div>
+            <div>
+                <a href="/wykres/{{ product_id }}">WYKRESY</a>
+            </div>
+        </div>
+        <div class="opinions_header2">
+            <p>OPINIE UŻYTKOWNIKÓW</p>
+        </div>
+        <div class="opinions_tabela">
+            <table>
+            <thead>
+                <tr>
+                    <th>Autor</th>
+                    <th>Polecenie</th>
+                    <th>Ocena użytkownika</th>
+                    <th>Potwierdzenie zakupu</th>
+                    <th>Liczba pozytywnych opinii</th>
+                    <th>Liczba negatywnych opinii</th>
+                    <th>Treść opinii</th>
+                    <th>Data wystawienia</th>
+                    <th>Data kupna</th>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for opinion in opinions %}
+                <tr>
+                    <td>{{ opinion.author }}</td>
+                    <td>{{ opinion.recomendation }}</td>
+                    <td>{{ opinion.user_score }}</td>
+                    <td>{{ opinion.purchase_confirmation }}</td>
+                    <td>{{ opinion.yes_count }}</td>
+                    <td>{{ opinion.no_count }}</td>
+                    <td>{{ opinion.text }}</td>
+                    <td>{{ opinion.date_posted }}</td>
+                    <td>{{ opinion.date_purchased}}</td>
+                    <td>{{ opinion.zalety }}</td>
+                    <td>{{ opinion.wady }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>    
+        </div>
+    </div>
 </body>
 </html>

@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block head %}{% endblock %}
+    <!--<link rel="stylesheet" href="style.css">-->
 
 </head>
-<body>
+<body class="data_body">
     <div id="data">
         <div class="data_in">
             <header>
                     <ul id="navigation-menu">
                         <li><a href="/">HOME PAGE</a></li>
                         <li><a href="/extract">EXTRACT</a></li>
-                        <li><a href="/data">PRODUCTS</a></li>
+                        <li><a href="/data">PRODUCTS</a></li>   
                         <li><a href="/about">ABOUT</a></li>
                     </ul>
             </header>
@@ -24,13 +25,17 @@
                 </div>
                 <div class="data_list">
                     {% for product in products_info %}
-                        <div class="product_info">
-                            <a href="/data/{{ product.product_id }}">Produkt: {{ product.product_id }}</a>
-                            <p>Liczba opinii: {{ product.opinions_count if product.opinions_count else "0"}}</p>
-                            <p>Liczba wad: {{ product.con_count if product.con_count else "0"}}</p>
-                            <p>Liczba zalet: {{ product.pros_count if product.pros_count else "0"}}</p>
-                            <p>Średnia ocena: {{ product.average_score if product.average_score else "brak danych" }}</p>
-                            <a href="/download_json/{{ product.product_id }}">Pobierz JSON</a>
+                        <div class="product">
+                            <div class="product_info">
+                                <a href="/data/{{ product.product_id }}">ID: {{ product.product_id }}</a>
+                                <p>Liczba opinii: {{ product.opinions_count if product.opinions_count else "0"}}</p>
+                                <p>Liczba wad: {{ product.con_count if product.con_count else "0"}}</p>
+                                <p>Liczba zalet: {{ product.pros_count if product.pros_count else "0"}}</p>
+                                <p>Średnia ocena: {{ product.average_score if product.average_score else "brak danych" }}</p>
+                            </div>
+                            <div class="product_download">
+                                <a href="/download_json/{{ product.product_id }}" class="downloader">POBIERZ JSON</a>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
