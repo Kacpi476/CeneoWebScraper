@@ -82,7 +82,30 @@ for user_score in data["user_score"]:
 srednia_ocen = sum_oceny/5
 print(srednia_ocen)
 
-y = [srednia_ocen,5]
+#y = [srednia_ocen,5]
+#pie_labels = ["Opinie", "Reszta opinii"]
+#pie_explode = [0.2, 0]
+#pie_colors = ["#EF4729","#ffffff"]
+#
+#plt.figure(figsize=(8, 6), facecolor="#322F2F")
+#plt.title('Opinie', color="#ffffff")
+#plt.rcParams.update({'text.color': "#EF4729"})
+#plt.pie(y,labels=pie_labels,explode=pie_explode, colors=pie_colors)
 
-plt.pie(y)
-plt.show()
+#bar_labels = list(data_ocena.keys())
+#bar_values = list(data_ocena.values())
+#bar_colors = ["#EF4729","#ffffff"]
+#
+#
+#plt.figure(figsize=(6, 6),facecolor="#322F2F")
+#plt.bar(bar_labels, bar_values, color="#EF4729")
+#plt.xlabel('Ocena', color="#ffffff")
+#plt.ylabel('Liczba opinii', color="#ffffff")
+#plt.title('Liczba opinii dla poszczególnych ocen', color="#ffffff")
+#plt.gca().set_facecolor("#322F2F")
+#plt.gca().tick_params(axis='x', colors='#ffffff')
+#plt.gca().tick_params(axis='y', colors='#ffffff')
+#plt.rcParams.update({'text.color': "#ffffff", 'axes.labelcolor': "#ffffff"})
+
+
+#plt.show()

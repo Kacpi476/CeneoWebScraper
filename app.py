@@ -28,6 +28,19 @@ def check_product_exists(product_id):
     response = requests.head(url)
     return response.status_code == 200
 
+def check_if_not_0(product_id):
+    url = f"https://www.ceneo.pl/{product_id}#tab=reviews"
+    page = requests.get(url)
+    soup = BeautifulSoup(page.text, "html.parser")
+    opinie = soup.find_all(class_="user-post user-post__card js_product-review")
+    if len(opinie) > 0:
+        return True
+    else:
+        return False
+
+
+
+
 def scrape_data(product_id):
     url = f"https://www.ceneo.pl/{product_id}#tab=reviews"
     page = requests.get(url)
@@ -167,6 +180,8 @@ def add_product():
     product_id = request.form['product_id']
     if not product_id or not is_valid_product_id(product_id) or not check_product_exists(product_id):
         return render_template('extract.html', message="Nieprawidłowy kod produktu.")
+    elif check_if_not_0(product_id) == False:
+        return render_template('extract.html', message="Brak opinii o produkcie.")
     elif product_id in products:
         return render_template('extract.html', message="Ten produkt został już dodany.")
     else:
@@ -253,24 +268,30 @@ def show_charts(product_id):
     current_product_opinions = next((info.opinions_count for info in products_info if info.product_id == product_id), 0)
     total_opinions = sum(info.opinions_count for info in products_info)
     pie_info = [current_product_opinions,(total_opinions-current_product_opinions)]
-    pie_labels = ["Liczba opinii tego produktu", "Reszta opinii"]
+    pie_labels = ["Opinie", "Reszta opinii"]
     pie_explode = [0.2, 0]
-    pie_colors = []
+    pie_colors = ["#EF4729","#ffffff"]
+
     bar_labels = list(data_ocena.keys())
     bar_values = list(data_ocena.values())
 
 
-    plt.figure(figsize=(6, 6))
-    plt.pie(pie_info,labels=pie_labels,explode=pie_explode)
+    plt.figure(figsize=(8, 6),facecolor="#322F2F")
+    plt.pie(pie_info,labels=pie_labels,explode=pie_explode, colors=pie_colors)
+    plt.title('Liczba opinii dla poszczególnych ocen', color="#ffffff")
+    plt.rcParams.update({'text.color': "#EF4729"})
     plt.savefig(f"static/images/pie_chart_{product_id}.png")
     plt.close()
 
-    plt.figure(figsize=(6, 6))
-    plt.bar(bar_labels, bar_values)
-    plt.xlabel('Ocena')
-    plt.ylabel('Liczba opinii')
-    plt.title('Liczba opinii dla poszczególnych ocen')
-    plt.xticks(rotation=45)
+    plt.figure(figsize=(8, 6),facecolor="#322F2F")
+    plt.bar(bar_labels, bar_values, color="#EF4729")
+    plt.xlabel('Ocena', color="#ffffff")
+    plt.ylabel('Liczba opinii', color="#ffffff")
+    plt.title('Liczba opinii dla poszczególnych ocen', color="#ffffff")
+    plt.gca().set_facecolor("#322F2F")
+    plt.gca().tick_params(axis='x', colors='#ffffff')
+    plt.gca().tick_params(axis='y', colors='#ffffff')
+    plt.rcParams.update({'text.color': "#ffffff", 'axes.labelcolor': "#ffffff"})
     plt.savefig(f"static/images/bar_chart_{product_id}.png")
     plt.close()
 

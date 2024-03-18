@@ -9,18 +9,26 @@
     <title>Wykresy</title>
 </head>
 <body>
-    <div>
-        <h>Wykresy dla produktu o ID: {{ product_id }}</h>
-        <p>Ilość opinii:{{current_product_opinions}} </p>
-        <p>Liczba wszyskich opini: {{ all_liczba_opini }}</p>
-        <p>Dane o ocenach: {{ data_ocena }}</p>
-        <div>
-            <h>pie:</h>
-            <img src="{{ url_for('static', filename='images/pie_chart_' + product_id + '.png') }}" alt="Wykres opinii" width="800" height="600">
-        </div>
-        <div>
-            <h>słupkowy</h>
-            <img src="{{ url_for('static', filename='images/bar_chart_' + product_id + '.png') }}" alt="Wykres opinii" width="800" height="600">
+    <div class="charts">
+        <div class="charts_in">
+            <div class="charts_header">
+                <div>
+                    <a href="/data/{{ product_id }}">POWRÓT</a>
+                </div>
+            </div>
+            <div class="charts_header2">
+                <p>WYKRESY</p>
+            </div>
+            <div class="charts_content">
+                <div class="pie_chart">
+                    <!--<img src="pie_chart_160753591.png" alt="" width="800" height="600">-->
+                    <img src="{{ url_for('static', filename='images/pie_chart_' + product_id + '.png') }}" alt="Wykres opinii" width="1000" height="600">
+                </div>
+                <div class="bar_chart">
+                    <!--<img src="pie_chart_160753591.png" alt="" width="800" height="600">-->
+                    <img src="{{ url_for('static', filename='images/bar_chart_' + product_id + '.png') }}" alt="Wykres opinii" width="800" height="600">
+                </div>       
+            </div>
         </div>
     </div>
 </body>
