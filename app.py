@@ -21,7 +21,7 @@ class ProductInfo:
         self.average_score = average_score
 
 def is_valid_product_id(product_id):
-    return len(product_id) == 9 and product_id.isdigit()
+    return len(product_id)>5 and len(product_id)<10 and product_id.isdigit()
 
 def check_product_exists(product_id):
     url = f"https://www.ceneo.pl/{product_id}"
@@ -166,13 +166,9 @@ def home():
     return render_template("home.html")
 
 
-
-
 @app.route('/extract')
 def index():
     return render_template('extract.html', message="")
-
-
 
 
 @app.route("/add_product", methods=['POST'])
@@ -191,7 +187,6 @@ def add_product():
 
 
 
-
 @app.route("/data")
 def data():
     return render_template("data.html", products_info = products_info)
@@ -203,11 +198,13 @@ def get_reviews(product_id):
     with open(f"reviews_{product_id}.json", "r", encoding="utf-8") as json_file:
         reviews = json.load(json_file)
     return render_template('opinions.html', product_id=product_id, opinions=reviews)
-    
+
+
 @app.route('/download_json/<product_id>')
 def download_json(product_id):
     filename = f"reviews_{product_id}.json"
     return send_file(filename, as_attachment=True)
+
 
 @app.route('/wykres/<product_id>')
 def show_charts(product_id):
@@ -226,7 +223,6 @@ def show_charts(product_id):
     score_4 = 0
     score_45 = 0
     score_5 = 0
-
     for i in data["user_score"]:
         if i == "0/5":
             score_0 += 1
@@ -250,7 +246,6 @@ def show_charts(product_id):
             score_45 += 1
         if i == "5/5":
             score_5 += 1
-
     data_ocena = {
         "0/5": score_0,
         "0,5/5": score_05,
@@ -275,7 +270,6 @@ def show_charts(product_id):
     bar_labels = list(data_ocena.keys())
     bar_values = list(data_ocena.values())
 
-
     plt.figure(figsize=(8, 6),facecolor="#322F2F")
     plt.pie(pie_info,labels=pie_labels,explode=pie_explode, colors=pie_colors)
     plt.title('Liczba opinii dla poszczególnych ocen', color="#ffffff")
@@ -294,11 +288,7 @@ def show_charts(product_id):
     plt.rcParams.update({'text.color': "#ffffff", 'axes.labelcolor': "#ffffff"})
     plt.savefig(f"static/images/bar_chart_{product_id}.png")
     plt.close()
-
-
     return render_template('charts.html', product_id=product_id, data_ocena=data_ocena,products_info=products_info, all_liczba_opini=total_opinions,current_product_opinions=current_product_opinions)
-
-
 
 
 @app.route("/about")
