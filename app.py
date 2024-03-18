@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file
 from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
 import requests
 import re
 import pandas as pd
@@ -171,7 +172,6 @@ def add_product():
     else:
         products.append(product_id)
         scrape_data(product_id)
-        #print(products)
         return render_template('extract.html', message="Produkt został dodany.")
 
 
@@ -196,6 +196,9 @@ def download_json(product_id):
 
 @app.route('/wykres/<product_id>')
 def show_charts(product_id):
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
     data = pd.read_json(f"reviews_{product_id}.json")
     score_0 = 0
     score_05 = 0
@@ -248,8 +251,29 @@ def show_charts(product_id):
     }
 
     current_product_opinions = next((info.opinions_count for info in products_info if info.product_id == product_id), 0)
-
     total_opinions = sum(info.opinions_count for info in products_info)
+    pie_info = [current_product_opinions,(total_opinions-current_product_opinions)]
+    pie_labels = ["Liczba opinii tego produktu", "Reszta opinii"]
+    pie_explode = [0.2, 0]
+    pie_colors = []
+    bar_labels = list(data_ocena.keys())
+    bar_values = list(data_ocena.values())
+
+
+    plt.figure(figsize=(6, 6))
+    plt.pie(pie_info,labels=pie_labels,explode=pie_explode)
+    plt.savefig(f"static/images/pie_chart_{product_id}.png")
+    plt.close()
+
+    plt.figure(figsize=(6, 6))
+    plt.bar(bar_labels, bar_values)
+    plt.xlabel('Ocena')
+    plt.ylabel('Liczba opinii')
+    plt.title('Liczba opinii dla poszczególnych ocen')
+    plt.xticks(rotation=45)
+    plt.savefig(f"static/images/bar_chart_{product_id}.png")
+    plt.close()
+
 
     return render_template('charts.html', product_id=product_id, data_ocena=data_ocena,products_info=products_info, all_liczba_opini=total_opinions,current_product_opinions=current_product_opinions)
 

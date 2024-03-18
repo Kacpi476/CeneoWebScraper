@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+    <!--<link rel="stylesheet" href="style.css">-->
     <title>Wykresy</title>
 </head>
 <body>
     <div>
-        <h2>Wykresy dla produktu o ID: {{ product_id }}</h2>
-        
-        <h3>Liczba opinii z poszczególnymi ocenami:</h3>
-        
+        <h>Wykresy dla produktu o ID: {{ product_id }}</h>
         <p>Ilość opinii:{{current_product_opinions}} </p>
         <p>Liczba wszyskich opini: {{ all_liczba_opini }}</p>
         <p>Dane o ocenach: {{ data_ocena }}</p>
+        <div>
+            <h>pie:</h>
+            <img src="{{ url_for('static', filename='images/pie_chart_' + product_id + '.png') }}" alt="Wykres opinii" width="800" height="600">
+        </div>
+        <div>
+            <h>słupkowy</h>
+            <img src="{{ url_for('static', filename='images/bar_chart_' + product_id + '.png') }}" alt="Wykres opinii" width="800" height="600">
+        </div>
     </div>
 </body>
 </html>

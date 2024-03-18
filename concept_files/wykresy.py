@@ -82,10 +82,7 @@ for user_score in data["user_score"]:
 srednia_ocen = sum_oceny/5
 print(srednia_ocen)
 
-fig, ax = plt.subplots()
+y = [srednia_ocen,5]
 
-names = list(data_ocena.keys())
-values = list(data_ocena.values())
-
-ax.bar(names, values)
+plt.pie(y)
 plt.show()
